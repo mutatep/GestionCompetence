@@ -45,13 +45,12 @@ public class Employe {
     }
     
     public Employe(){
-        BufferedReader br = null;
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
             Date d = null;
             
             String csvFile = "fichiers/liste_personnel.csv";
-            br = new BufferedReader(new FileReader(csvFile));
+            BufferedReader br = new BufferedReader(new FileReader(csvFile));
             String line = br.readLine();
             int i = 2;
             
@@ -62,10 +61,7 @@ public class Employe {
             }
             br.close();
         }
-        catch (IOException ex) {
-            Logger.getLogger(Employe.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        catch (ParseException ex) {
+        catch (IOException | ParseException ex) {
             Logger.getLogger(Employe.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println(this.mapEmployes.keySet());
@@ -95,10 +91,5 @@ public class Employe {
     public String getIdentifiant(){
         return this.identifiant;
     }
-    
-    public Map<String, Employe> getEmployes(){
-        return this.mapEmployes;
-    }
-    
     
 }
