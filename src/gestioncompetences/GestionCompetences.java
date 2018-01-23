@@ -15,7 +15,10 @@ public class GestionCompetences {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Employe e = new Employe();
+        //"fichiers/liste_personnel.csv";
+        
+        FichierCsv fichier = new FichierCsv();
+        Employe.afficherMapemployes();
     }
     
 }

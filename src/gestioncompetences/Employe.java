@@ -26,7 +26,7 @@ public class Employe {
     private String prenom;
     private String nom;
     private Date dateEntree;
-    private static Map<String, Employe> mapEmployes = new HashMap<String, Employe>();
+    protected static Map<String, Employe> mapEmployes = new HashMap<String, Employe>();
     
     /**
      *
@@ -52,12 +52,10 @@ public class Employe {
             String csvFile = "fichiers/liste_personnel.csv";
             BufferedReader br = new BufferedReader(new FileReader(csvFile));
             String line = br.readLine();
-            int i = 2;
             
-            while ((line = br.readLine()) != null && i!=52) {
+            while ((line = br.readLine()) != null) {
                 String[] description = line.split(";");
                 Employe employe = new Employe(description[3], description[0], description[1], simpleDateFormat.parse(description[2]));
-                i++;
             }
             br.close();
         }
@@ -90,6 +88,17 @@ public class Employe {
      */
     public String getIdentifiant(){
         return this.identifiant;
+    }
+    
+    public static void afficherMapemployes(){
+        for(String s : Employe.mapEmployes.keySet()){
+            System.out.print (s +  " : ");
+            System.out.println(Employe.mapEmployes.get(s).identifiant + " -- " 
+                    + Employe.mapEmployes.get(s).nom + " -- " 
+                    +Employe.mapEmployes.get(s).prenom + " -- "
+                    +Employe.mapEmployes.get(s).dateEntree);
+             
+        }
     }
     
 }
