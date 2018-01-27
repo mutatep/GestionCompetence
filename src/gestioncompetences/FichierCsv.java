@@ -57,7 +57,7 @@ public class FichierCsv {
     }
     
     private void chargerDonneesCompetences() throws ParseException{
-        
+        Competence comptetence = new Competence(this.mots[0],this.mots[2],this.mots[1]);
     }
     
     private void chargerDonneesCompetencesPersonnel() throws ParseException{

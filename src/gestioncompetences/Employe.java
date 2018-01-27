@@ -41,7 +41,7 @@ public class Employe {
         this.nom = nom;
         this.dateEntree = dateE;
         
-        this.mapEmployes.put(this.identifiant, this);
+        Employe.mapEmployes.put(this.identifiant, this);
     }
     
     public Employe(){
@@ -73,13 +73,13 @@ public class Employe {
     public void ajouterEmploye(Employe e) throws IllegalArgumentException{
         if (e != null)
             throw new IllegalArgumentException("La valeur de l'employé à ajouter est null");
-        this.mapEmployes.put(e.getIdentifiant(), e);
+        Employe.mapEmployes.put(e.getIdentifiant(), e);
     }
     
     public void supprimerEmployer(Employe e)throws IllegalArgumentException{
         if (e != null)
             throw new IllegalArgumentException("La valeur de l'employé à supprimer est null");
-        this.mapEmployes.remove(e.getIdentifiant());
+        Employe.mapEmployes.remove(e.getIdentifiant());
     }
 
     /**

@@ -18,7 +18,10 @@ public class GestionCompetences {
         //"fichiers/liste_personnel.csv";
         
         FichierCsv fichier = new FichierCsv();
+        System.out.println("Les Employés : ");
         Employe.afficherMapemployes();
+        System.out.println("Les Compétences : ");
+        Competence.afficherMapCompetences();
     }
     
 }
