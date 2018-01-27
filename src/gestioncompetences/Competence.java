@@ -64,12 +64,12 @@ public class Competence {
             Logger.getLogger(Competence.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    //(il n’est pas demand´e de pouvoir ajouter/´editer/modiﬁer les comp´etences) 
     /**
      * Méthode qui permet d'ajouter une Compétence
      * @param c La compétence à ajouter
      * @throws IllegalArgumentException
-     */
+     
     public void ajouterCompetence(Competence c) throws IllegalArgumentException{
         if (c != null)
             throw new IllegalArgumentException("La valeur de la competence à ajouter est null");
@@ -80,12 +80,12 @@ public class Competence {
      * Méthode qui permet de supprimer une Compétence
      * @param c La compétence à supprimer
      * @throws IllegalArgumentException
-     */
+     
     public void supprimerCompetence(Competence c)throws IllegalArgumentException{
         if (c != null)
             throw new IllegalArgumentException("La valeur de la competence à supprimer est null");
         Competence.mapCompetences.remove(c.getIdentifiant());
-    }
+    }*/
 
     private String getIdentifiant() {
         return this.identifiant;
