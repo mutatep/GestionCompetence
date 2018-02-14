@@ -33,7 +33,7 @@ public class Mission {
     /**
      *
      */
-    protected static Map<String, Mission> mapMissions = new HashMap<String, Mission>();
+    public static Map<String, Mission> mapMissions = new HashMap<String, Mission>();
 
     /**
      * Constructeur avec paramétres de Mission
@@ -48,5 +48,24 @@ public class Mission {
         this.dateDebut=dateDeb;
         this.dateFin=dateFin;
         Mission.mapMissions.put(this.identifiant, this);
+        System.out.println("La mission " + this.intitule + "est crée");
     }
+    /**
+     *
+     * @return Identifiant de la mission
+     */
+    public String getIdentifiant(){
+        return this.identifiant;
+    }
+    
+    public String getIntitule(){
+        return this.intitule;
+    }
+    public Date getDateDeb(){
+        return this.dateDebut;
+    }
+    public Date getDateFin(){
+        return this.dateFin;
+    }
+    
 }

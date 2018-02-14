@@ -87,10 +87,7 @@ public class Competence {
         Competence.mapCompetences.remove(c.getIdentifiant());
     }*/
 
-    private String getIdentifiant() {
-        return this.identifiant;
-    }
-
+    
     /**
      * Méthode qui permet d'afficher l'ensemble de toutes les compétences
      */
@@ -103,5 +100,19 @@ public class Competence {
              
         }
     }
+    /**
+     *
+     * @return L'identifaint de la compétence
+     */
+    public String getIdentifiant() {
+        return this.identifiant;
+    }
     
+    /**
+     *
+     * @return Le libellé de la compétence en Français
+     */
+    public String getLibelleFr() {
+        return this.libelleFr;
+    }
 }

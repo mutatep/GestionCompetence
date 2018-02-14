@@ -5,19 +5,14 @@
  */
 package gestioncompetences;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Set;
 
 /**
- *
+ * Instance d'un employé
  * @author mutatep
  */
 public class Employe {
@@ -26,10 +21,15 @@ public class Employe {
     private String prenom;
     private String nom;
     private Date dateEntree;
-    protected static Map<String, Employe> mapEmployes = new HashMap<String, Employe>();
-    
+    private Set<Competence> setCompetences;
+
     /**
      *
+     */
+    public static Map<String, Employe> mapEmployes = new HashMap<String, Employe>();
+    
+    /**
+     * Constructeur de la classe Employe
      * @param id : Identifiant de l'employé
      * @param prenom : Prénom de l'employé
      * @param nom : Nom d'un employé
@@ -40,56 +40,65 @@ public class Employe {
         this.prenom = prenom;
         this.nom = nom;
         this.dateEntree = dateE;
+        this.setCompetences = new HashSet<>();
         
         Employe.mapEmployes.put(this.identifiant, this);
     }
-    
-    public Employe(){
-        try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date d = null;
-            
-            String csvFile = "fichiers/liste_personnel.csv";
-            BufferedReader br = new BufferedReader(new FileReader(csvFile));
-            String line = br.readLine();
-            
-            while ((line = br.readLine()) != null) {
-                String[] description = line.split(";");
-                Employe employe = new Employe(description[3], description[0], description[1], simpleDateFormat.parse(description[2]));
-            }
-            br.close();
-        }
-        catch (IOException | ParseException ex) {
-            Logger.getLogger(Employe.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println(this.mapEmployes.keySet());
-    }
-    
-    /**
-     *
-     * @param e : Un employé à ajouter
-     * @throws IllegalArgumentException
-     */
-    public void ajouterEmploye(Employe e) throws IllegalArgumentException{
-        if (e != null)
-            throw new IllegalArgumentException("La valeur de l'employé à ajouter est null");
-        Employe.mapEmployes.put(e.getIdentifiant(), e);
-    }
-    
-    public void supprimerEmployer(Employe e)throws IllegalArgumentException{
-        if (e != null)
-            throw new IllegalArgumentException("La valeur de l'employé à supprimer est null");
-        Employe.mapEmployes.remove(e.getIdentifiant());
-    }
 
     /**
-     *
-     * @return l'indentifiant d'un employé
+     * Permet d'ajouter une compétence à l'employé
+     * @param c : La compétence à ajouter à l'employé
+     * @throws IllegalArgumentException  : si la compétence à ajouter est null
+     */
+    public void ajouterCompetence(Competence c) throws IllegalArgumentException{
+        if(c == null)
+            throw new IllegalArgumentException ("La valeur de la compétence à ajouter est null");
+        this.setCompetences.add(c);
+    }
+    
+    /**
+     * Permet de supprimer la compétence d'un employé
+     * @param c : La compétence à supprimer
+     * @throws IllegalArgumentException  : si la compétence à supprimer est null
+     */
+    public void supprimerCompetence(Competence c) throws IllegalArgumentException{
+        if(c == null)
+            throw new IllegalArgumentException ("La valeur de la compétence à supprimer est null");
+        this.setCompetences.remove(c);
+    }
+    
+    /**
+     * Permet d'obtenir l'identifiant de l'employé
+     * @return l'identifiant d'un employé
      */
     public String getIdentifiant(){
         return this.identifiant;
     }
     
+    public String getNom(){
+        return this.nom;
+    }
+    
+    public String getPrenom(){
+        return this.prenom;
+    }
+    
+    public Date getDate(){
+        return this.dateEntree;
+    }
+    
+    
+    /**
+     * Permet d'obtenir la listes des compétences de l'employé
+     * @return : set des compétences de l'employé
+     */
+    public Set<Competence> getCompetences(){
+        return this.setCompetences;
+    }
+    
+    /**
+     *Affiche la map constituée de tous les employés
+     */
     public static void afficherMapemployes(){
         for(String s : Employe.mapEmployes.keySet()){
             System.out.print (s +  " : ");

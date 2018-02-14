@@ -14,21 +14,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Récupération des données dans un fichier csv
  * @author mutatep
  */
-public class FichierCsv {
+public class FichierCsv implements Fichier{
     
     private String[] mots;
     
-    
-    public FichierCsv(){
-        this.ChargerDonnees("fichiers/liste_personnel.csv");
-        this.ChargerDonnees("fichiers/liste_competences.csv");
-        this.ChargerDonnees("fichiers/competences_personnel.csv");
-    }
-    
-    private void ChargerDonnees(String csvFile){
+    public void chargerDonnees(String csvFile){
         try {
             BufferedReader br = new BufferedReader(new FileReader(csvFile));
             String line = br.readLine();
@@ -61,7 +54,10 @@ public class FichierCsv {
     }
     
     private void chargerDonneesCompetencesPersonnel() throws ParseException{
-        
+        for(String s : Employe.mapEmployes.keySet())
+            if(this.mots[0].equals(s))
+                for(int i = 1; i<this.mots.length; i++)
+                    Employe.mapEmployes.get(s).ajouterCompetence(Competence.mapCompetences.get(this.mots[i]));
     }
     
 }
