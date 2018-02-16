@@ -7,6 +7,7 @@ package interfaceGraphique;
 
 import gestioncompetences.Mission;
 import java.util.Date;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -124,9 +125,8 @@ public class PanelAjoutMission extends javax.swing.JPanel {
     private void validerAjoutMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_validerAjoutMissionMouseClicked
         if(NomDeMission.getText() != "" && DateDebMission.getValue() != null && DateFinMission.getValue() != null){
             Mission m = new Mission("2",NomDeMission.getText(),(Date) DateDebMission.getValue(),(Date) DateFinMission.getValue());
-            //FenMissions fen = new FenMissions();
-            //fen.setVisible(true);
-            //this.dispose();
+            FenetrePrincipale topFrame = (FenetrePrincipale) SwingUtilities.getWindowAncestor(this);
+            topFrame.allerA("missions");
         }else{
             erreurAjoutMission.setText("Veuillez compléter tous les champs");
         }

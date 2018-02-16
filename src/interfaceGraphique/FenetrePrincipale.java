@@ -43,6 +43,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 ModeleEmploye me = new ModeleEmploye();
                 this.corps.add(me);
                 this.etat = "employes";
+            case "ajoutMission":
+                PanelAjoutMission pam = new PanelAjoutMission();
+                this.corps.add(pam);
+                this.etat = "ajoutMission";
         }
         this.corps.revalidate();
         this.corps.repaint();
@@ -129,7 +133,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelConteneurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(corps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(manu, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
+                    .addComponent(manu, javax.swing.GroupLayout.PREFERRED_SIZE, 392, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

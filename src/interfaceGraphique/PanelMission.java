@@ -5,6 +5,13 @@
  */
 package interfaceGraphique;
 
+import gestioncompetences.Mission;
+import java.text.SimpleDateFormat;
+import java.util.Map;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author attma
@@ -16,6 +23,15 @@ public class PanelMission extends javax.swing.JPanel {
      */
     public PanelMission() {
         initComponents();
+        this.initialiserTableMission(Mission.mapMissions);
+        
+    }
+    private void initialiserTableMission(Map<String, Mission> map){
+        DefaultTableModel model = (DefaultTableModel) TableMissions.getModel();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        for(String s : map.keySet())
+            model.addRow(new Object[]{s, map.get(s).getIntitule(), dateFormat.format(map.get(s).getDateDeb()), dateFormat.format(map.get(s).getDateFin())," ???"});
         
     }
 
@@ -89,8 +105,8 @@ public class PanelMission extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addMissionButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMissionButtonMouseClicked
-        FenetreAjoutMission fen = new FenetreAjoutMission();
-        fen.setVisible(true);
+        FenetrePrincipale topFrame = (FenetrePrincipale) SwingUtilities.getWindowAncestor(this);
+        topFrame.allerA("ajoutMission");
        
     }//GEN-LAST:event_addMissionButtonMouseClicked
 
