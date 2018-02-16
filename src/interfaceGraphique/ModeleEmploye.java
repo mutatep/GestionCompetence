@@ -20,9 +20,9 @@ public class ModeleEmploye extends javax.swing.JPanel {
      * Creates new form ModeleEmploye
      * @param mapEmployes
      */
-    public ModeleEmploye(Map<String, Employe> mapEmployes) {
+    public ModeleEmploye() {
         initComponents();
-        this.initialiserTable(mapEmployes); 
+        this.initialiserTable(Employe.mapEmployes); 
     }
 
     /**
@@ -99,7 +99,7 @@ public class ModeleEmploye extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -6,20 +6,18 @@
 package interfaceGraphique;
 
 import gestioncompetences.Mission;
-import interfaceGraphique.FenMissions;
 import java.util.Date;
 
 /**
  *
  * @author attma
  */
-public class FenAjoutMission extends javax.swing.JDialog {
+public class PanelAjoutMission extends javax.swing.JPanel {
 
     /**
-     * Creates new form FenAjoutMission
+     * Creates new form PanelAjoutMission
      */
-    public FenAjoutMission(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public PanelAjoutMission() {
         initComponents();
     }
 
@@ -32,29 +30,14 @@ public class FenAjoutMission extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        validerAjoutMission = new javax.swing.JButton();
+        erreurAjoutMission = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        NomDeMission = new javax.swing.JTextField();
-        validerAjoutMission = new javax.swing.JButton();
         DateFinMission = new javax.swing.JFormattedTextField();
         DateDebMission = new javax.swing.JFormattedTextField();
-        erreurAjoutMission = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel1.setText("Nom");
-
-        jLabel2.setText("Date de début");
-
-        jLabel3.setText("Date de fin");
-
-        NomDeMission.setText("Nom");
-        NomDeMission.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NomDeMissionActionPerformed(evt);
-            }
-        });
+        NomDeMission = new javax.swing.JTextField();
 
         validerAjoutMission.setText("Valider");
         validerAjoutMission.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -68,14 +51,27 @@ public class FenAjoutMission extends javax.swing.JDialog {
             }
         });
 
+        erreurAjoutMission.setText(" ");
+
+        jLabel1.setText("Nom");
+
+        jLabel2.setText("Date de début");
+
+        jLabel3.setText("Date de fin");
+
         DateFinMission.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         DateDebMission.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
-        erreurAjoutMission.setText(" ");
+        NomDeMission.setText("Nom");
+        NomDeMission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NomDeMissionActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -123,70 +119,27 @@ public class FenAjoutMission extends javax.swing.JDialog {
                 .addComponent(validerAjoutMission)
                 .addContainerGap(87, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void NomDeMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomDeMissionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NomDeMissionActionPerformed
-
-    private void validerAjoutMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerAjoutMissionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_validerAjoutMissionActionPerformed
 
     private void validerAjoutMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_validerAjoutMissionMouseClicked
         if(NomDeMission.getText() != "" && DateDebMission.getValue() != null && DateFinMission.getValue() != null){
             Mission m = new Mission("2",NomDeMission.getText(),(Date) DateDebMission.getValue(),(Date) DateFinMission.getValue());
-            FenMissions fen = new FenMissions();
-            fen.setVisible(true);
-            this.dispose();
+            //FenMissions fen = new FenMissions();
+            //fen.setVisible(true);
+            //this.dispose();
         }else{
             erreurAjoutMission.setText("Veuillez compléter tous les champs");
         }
     }//GEN-LAST:event_validerAjoutMissionMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FenAjoutMission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FenAjoutMission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FenAjoutMission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FenAjoutMission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void validerAjoutMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerAjoutMissionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_validerAjoutMissionActionPerformed
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FenAjoutMission dialog = new FenAjoutMission(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    private void NomDeMissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NomDeMissionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NomDeMissionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField DateDebMission;

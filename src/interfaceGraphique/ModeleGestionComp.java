@@ -20,8 +20,8 @@ public class ModeleGestionComp extends javax.swing.JFrame {
     /**
      *
      */
-    private static Entreprise e;
-    private JPanel panel;
+    static Entreprise e;
+   private JPanel panel;
     /**
      * Creates new form ModeleGestionComp
      */

@@ -29,19 +29,24 @@ public class Main extends javax.swing.JPanel {
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        GestionDeEmployesButton = new javax.swing.JButton();
+        GestionDesMissionsButton = new javax.swing.JButton();
 
-        jButton1.setText("Gestion des employés");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        GestionDeEmployesButton.setText("Gestion des employés");
+        GestionDeEmployesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                GestionDeEmployesButtonActionPerformed(evt);
             }
         });
-        jSplitPane1.setLeftComponent(jButton1);
+        jSplitPane1.setLeftComponent(GestionDeEmployesButton);
 
-        jButton2.setText("Gestion des missions");
-        jSplitPane1.setRightComponent(jButton2);
+        GestionDesMissionsButton.setText("Gestion des missions");
+        GestionDesMissionsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GestionDesMissionsButtonMouseClicked(evt);
+            }
+        });
+        jSplitPane1.setRightComponent(GestionDesMissionsButton);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -57,14 +62,18 @@ public class Main extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void GestionDeEmployesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionDeEmployesButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_GestionDeEmployesButtonActionPerformed
+
+    private void GestionDesMissionsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GestionDesMissionsButtonMouseClicked
+         
+    }//GEN-LAST:event_GestionDesMissionsButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton GestionDeEmployesButton;
+    private javax.swing.JButton GestionDesMissionsButton;
     private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }
