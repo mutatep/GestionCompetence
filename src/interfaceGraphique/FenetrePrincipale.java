@@ -39,14 +39,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 PanelMission pm = new PanelMission();
                 this.corps.add(pm);
                 this.etat = "missions";
+                break;
             case "employes":
                 ModeleEmploye me = new ModeleEmploye();
                 this.corps.add(me);
                 this.etat = "employes";
+                break;
             case "ajoutMission":
                 PanelAjoutMission pam = new PanelAjoutMission();
                 this.corps.add(pam);
                 this.etat = "ajoutMission";
+                break;
         }
         this.corps.revalidate();
         this.corps.repaint();

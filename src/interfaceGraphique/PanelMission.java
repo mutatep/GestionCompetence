@@ -44,15 +44,20 @@ public class PanelMission extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        editMission = new javax.swing.JButton();
+        removeMission = new javax.swing.JButton();
         addMissionButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableMissions = new javax.swing.JTable();
 
-        jButton5.setText("Éditer");
+        editMission.setText("Éditer");
 
-        jButton6.setText("-");
+        removeMission.setText("-");
+        removeMission.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeMissionMouseClicked(evt);
+            }
+        });
 
         addMissionButton.setText("+");
         addMissionButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -81,8 +86,8 @@ public class PanelMission extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removeMission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editMission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addMissionButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -94,9 +99,9 @@ public class PanelMission extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(addMissionButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6)
+                        .addComponent(removeMission)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
+                        .addComponent(editMission)
                         .addGap(102, 102, 102))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,12 +115,16 @@ public class PanelMission extends javax.swing.JPanel {
        
     }//GEN-LAST:event_addMissionButtonMouseClicked
 
+    private void removeMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMissionMouseClicked
+        ((DefaultTableModel)this.TableMissions.getModel()).removeRow(0);
+    }//GEN-LAST:event_removeMissionMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableMissions;
     private javax.swing.JButton addMissionButton;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton editMission;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton removeMission;
     // End of variables declaration//GEN-END:variables
 }
