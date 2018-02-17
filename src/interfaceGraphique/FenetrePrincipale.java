@@ -12,7 +12,7 @@ import gestioncompetences.Entreprise;
  * @author fatima attmane
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
-    private String etat;
+    private EtatFenetre etat;
     private static Entreprise e;
     /**
      * Creates new form FenetrePrincipale
@@ -25,30 +25,30 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         this.corps.add(m);
         this.e = new Entreprise("Test");
         this.e.recupererDonnees();
-        this.etat = "home";
+        this.etat = EtatFenetre.HOME;
     }
-    public void allerA(String etat){
+    public void allerA(String newEtat){
         this.corps.removeAll();
-        switch(etat){
+        switch(newEtat){
             case "home":
                 Main m = new Main();
                 this.corps.add(m);
-                this.etat = "home";
+                this.etat = EtatFenetre.HOME;
                 break;
             case "missions":
                 PanelMission pm = new PanelMission();
                 this.corps.add(pm);
-                this.etat = "missions";
+                this.etat = EtatFenetre.MISSIONS;
                 break;
             case "employes":
                 ModeleEmploye me = new ModeleEmploye();
                 this.corps.add(me);
-                this.etat = "employes";
+                this.etat = EtatFenetre.EMPLOYES;
                 break;
             case "ajoutMission":
                 PanelAjoutMission pam = new PanelAjoutMission();
                 this.corps.add(pam);
-                this.etat = "ajoutMission";
+                this.etat = EtatFenetre.AJOUTMISSION;
                 break;
         }
         this.corps.revalidate();
