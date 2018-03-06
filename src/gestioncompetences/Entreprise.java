@@ -5,10 +5,6 @@
  */
 package gestioncompetences;
 
-import gestioncompetences.Competence;
-import gestioncompetences.Employe;
-import gestioncompetences.FichierCsv;
-import gestioncompetences.Mission;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -17,11 +13,11 @@ import java.util.Set;
  * Instance d'une entreprise
  * @author mutatep
  */
-public class Entreprise {
+public class Entreprise{
     
     private String libelle;
     private Map<String, Employe> mapEmployes;
-    private Map<String, Mission> mapMissions;
+    private Map<Integer, Mission> mapMissions;
     private Map<Mission, Set<Employe>> mapMissionEmployes;
     
     /**
@@ -31,7 +27,7 @@ public class Entreprise {
     public Entreprise(String libelle){
         this.libelle = libelle;
         this.mapEmployes = Employe.mapEmployes;
-        this.mapMissions = Mission.mapMissions;
+        this.mapMissions = Mission.getMapMissions();
         this.mapMissionEmployes = new HashMap<>();
     }
     
@@ -64,7 +60,7 @@ public class Entreprise {
     public void supprimerMission(Mission m)throws IllegalArgumentException{
         if (m == null)
             throw new IllegalArgumentException("La valeur de l'employé à supprimer est null");
-        Mission.mapMissions.remove(m.getIdentifiant());
+        Mission.setMapMissions(m.getIdentifiant());
     }
     
     /**

@@ -34,7 +34,7 @@ public class Competence {
      */
     protected static Map<String, Competence> mapCompetences = new HashMap<String, Competence>();
     
-    /**
+     /**
      * Constructeur avec paramétres de Compétence
      * @param id L'identifiant de la compétence
      * @param libFr Le libellé en Français de la compétence
@@ -46,60 +46,7 @@ public class Competence {
         this.libelleEn=libEn;
         Competence.mapCompetences.put(this.identifiant, this);
     }
-    
-    /**
-     * Constructeur sans paramétres de Compétence
-     */
-    public Competence(){
-        try {
-            String csvFile = "fichiers/liste_competences.csv";
-            BufferedReader br = new BufferedReader(new FileReader(csvFile));
-            String line = br.readLine();
-            while ((line = br.readLine()) != null) {
-                String[] description = line.split(";");
-                Competence competence = new Competence(description[0], description[2], description[1]);
-            }
-            br.close();
-        }catch (IOException ex) {
-            Logger.getLogger(Competence.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    //(il n’est pas demand´e de pouvoir ajouter/´editer/modiﬁer les comp´etences) 
-    /**
-     * Méthode qui permet d'ajouter une Compétence
-     * @param c La compétence à ajouter
-     * @throws IllegalArgumentException
-     
-    public void ajouterCompetence(Competence c) throws IllegalArgumentException{
-        if (c != null)
-            throw new IllegalArgumentException("La valeur de la competence à ajouter est null");
-        Competence.mapCompetences.put(c.getIdentifiant(), c);
-    }
-    
-    /**
-     * Méthode qui permet de supprimer une Compétence
-     * @param c La compétence à supprimer
-     * @throws IllegalArgumentException
-     
-    public void supprimerCompetence(Competence c)throws IllegalArgumentException{
-        if (c != null)
-            throw new IllegalArgumentException("La valeur de la competence à supprimer est null");
-        Competence.mapCompetences.remove(c.getIdentifiant());
-    }*/
 
-    
-    /**
-     * Méthode qui permet d'afficher l'ensemble de toutes les compétences
-     */
-    public static void afficherMapCompetences(){
-        for(String s : Competence.mapCompetences.keySet()){
-            System.out.print (s +  " : ");
-            System.out.println(Competence.mapCompetences.get(s).identifiant + " -- " 
-                    + Competence.mapCompetences.get(s).libelleEn + " -- " 
-                    + Competence.mapCompetences.get(s).libelleFr);
-             
-        }
-    }
     /**
      *
      * @return L'identifaint de la compétence

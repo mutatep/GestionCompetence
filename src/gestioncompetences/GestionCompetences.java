@@ -21,7 +21,6 @@ public class GestionCompetences {
         System.out.println("Les Employés : ");
         Employe.afficherMapemployes();
         System.out.println("Les Compétences : ");
-        Competence.afficherMapCompetences();
     }
     
 }
