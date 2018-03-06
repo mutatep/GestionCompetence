@@ -5,7 +5,15 @@
  */
 package interfaceGraphique;
 
+import gestioncompetences.Employe;
+import gestioncompetences.Employe;
 import gestioncompetences.Entreprise;
+import gestioncompetences.Entreprise;
+import interfaceGraphique.EtatFenetre;
+import interfaceGraphique.Main;
+import interfaceGraphique.PanelEmploye;
+import interfaceGraphique.PanelAjoutMission;
+import interfaceGraphique.PanelMission;
 
 /**
  *
@@ -21,7 +29,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         initComponents();
         Main m = new Main();
         //PanelMission m = new PanelMission();
-        //ModeleEmploye m = new ModeleEmploye();
+        //ModeleEmploye m = new PanelEmploye();
         this.corps.add(m);
         this.e = new Entreprise("Test");
         this.e.recupererDonnees();
@@ -41,7 +49,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 this.etat = EtatFenetre.MISSIONS;
                 break;
             case "employes":
-                ModeleEmploye me = new ModeleEmploye();
+                PanelEmploye me = new PanelEmploye();
                 this.corps.add(me);
                 this.etat = EtatFenetre.EMPLOYES;
                 break;
@@ -50,10 +58,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 this.corps.add(pam);
                 this.etat = EtatFenetre.AJOUTMISSION;
                 break;
+            
         }
         this.corps.revalidate();
         this.corps.repaint();
 
+    }
+    public void ficheEmp(Employe e){
+                FicheEmploye fe = new FicheEmploye(e);
+                this.corps.add(fe);
+                this.etat = EtatFenetre.FICHEEMPLOYE;
     }
 
     /**
@@ -66,7 +80,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void initComponents() {
 
         panelConteneur = new javax.swing.JPanel();
-        manu = new javax.swing.JPanel();
+        menu = new javax.swing.JPanel();
         homeButtonEmployes = new javax.swing.JButton();
         menuButtonEmployes = new javax.swing.JButton();
         menuButtonMission = new javax.swing.JButton();
@@ -79,9 +93,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         panelConteneur.setMinimumSize(new java.awt.Dimension(569, 362));
         panelConteneur.setName(""); // NOI18N
 
-        manu.setBackground(new java.awt.Color(0, 0, 0));
-        manu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(240, 240, 240), java.awt.Color.white, java.awt.Color.white));
-        manu.setLayout(new java.awt.GridLayout(4, 0));
+        menu.setBackground(new java.awt.Color(0, 0, 0));
+        menu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, new java.awt.Color(240, 240, 240), java.awt.Color.white, java.awt.Color.white));
+        menu.setLayout(new java.awt.GridLayout(4, 0));
 
         homeButtonEmployes.setText("Home");
         homeButtonEmployes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,7 +103,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 homeButtonEmployesMouseClicked(evt);
             }
         });
-        manu.add(homeButtonEmployes);
+        menu.add(homeButtonEmployes);
 
         menuButtonEmployes.setText("Employes");
         menuButtonEmployes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -102,7 +116,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 menuButtonEmployesActionPerformed(evt);
             }
         });
-        manu.add(menuButtonEmployes);
+        menu.add(menuButtonEmployes);
 
         menuButtonMission.setText("Mission");
         menuButtonMission.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,14 +124,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 menuButtonMissionMouseClicked(evt);
             }
         });
-        manu.add(menuButtonMission);
+        menu.add(menuButtonMission);
 
         jButton5.setText("jButton1");
-        manu.add(jButton5);
+        menu.add(jButton5);
 
         corps.setBackground(new java.awt.Color(0, 0, 0));
         corps.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(240, 240, 240), new java.awt.Color(240, 240, 240), new java.awt.Color(240, 240, 240), new java.awt.Color(240, 240, 240)));
-        corps.setLayout(new java.awt.GridLayout());
+        corps.setLayout(new java.awt.GridLayout(1, 1));
 
         javax.swing.GroupLayout panelConteneurLayout = new javax.swing.GroupLayout(panelConteneur);
         panelConteneur.setLayout(panelConteneurLayout);
@@ -125,7 +139,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             panelConteneurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelConteneurLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(manu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(corps, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                 .addContainerGap())
@@ -136,7 +150,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelConteneurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(corps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(manu, javax.swing.GroupLayout.PREFERRED_SIZE, 392, Short.MAX_VALUE))
+                    .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -209,7 +223,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JPanel corps;
     private javax.swing.JButton homeButtonEmployes;
     private javax.swing.JButton jButton5;
-    private javax.swing.JPanel manu;
+    private javax.swing.JPanel menu;
     private javax.swing.JButton menuButtonEmployes;
     private javax.swing.JButton menuButtonMission;
     private javax.swing.JPanel panelConteneur;

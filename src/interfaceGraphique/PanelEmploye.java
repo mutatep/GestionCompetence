@@ -6,6 +6,7 @@
 package interfaceGraphique;
 
 import gestioncompetences.Employe;
+import static interfaceGraphique.ModeleGestionComp.e;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 import javax.swing.table.DefaultTableModel;
@@ -14,13 +15,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mutatep
  */
-public class ModeleEmploye extends javax.swing.JPanel {
+public class PanelEmploye extends javax.swing.JPanel {
 
     /**
      * Creates new form ModeleEmploye
      * @param mapEmployes
      */
-    public ModeleEmploye() {
+    public PanelEmploye() {
         initComponents();
         this.initialiserTable(Employe.mapEmployes); 
     }
@@ -46,13 +47,31 @@ public class ModeleEmploye extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Identifiant", "Nom", "Prénom", "Date d'entrée"
+                "Identifiant", "Nom", "Prénom", "Date d'entrée", "chk"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButton4.setText("+");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         jButton5.setText("Éditer");
 
@@ -99,9 +118,32 @@ public class ModeleEmploye extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        String id = (String) this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 0);
+        FicheEmployeFen fe = new FicheEmployeFen(Employe.mapEmployes.get(id));
+       //this.monPanelTest.add(fe);
+       // this.monPanelTest.revalidate();
+       // this.monPanelTest.repaint();
+       fe.setVisible(true);
+       
+        System.out.println(Employe.mapEmployes.get(id).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+         boolean b;
+        System.out.println(this.jTable1.getColumnCount() - 1);
+        for(int i =0; i < this.jTable1.getRowCount(); i++){
+            b = (boolean) this.jTable1.getValueAt(i,this.jTable1.getColumnCount() - 1);
+            System.out.println(b);
+            if(b){
+                ((DefaultTableModel)this.jTable1.getModel()).removeRow(i);
+            }
+        }
+    }//GEN-LAST:event_jButton4MouseClicked
 
     private void initialiserTable(Map<String, Employe> mapEmployes){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();

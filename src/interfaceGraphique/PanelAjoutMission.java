@@ -124,7 +124,7 @@ public class PanelAjoutMission extends javax.swing.JPanel {
 
     private void validerAjoutMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_validerAjoutMissionMouseClicked
         if(NomDeMission.getText() != "" && DateDebMission.getValue() != null && DateFinMission.getValue() != null){
-            Mission m = new Mission("2",NomDeMission.getText(),(Date) DateDebMission.getValue(),(Date) DateFinMission.getValue());
+            Mission m = new Mission(NomDeMission.getText(),(Date) DateDebMission.getValue(),(Date) DateFinMission.getValue());
             FenetrePrincipale topFrame = (FenetrePrincipale) SwingUtilities.getWindowAncestor(this);
             topFrame.allerA("missions");
         }else{

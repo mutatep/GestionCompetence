@@ -46,7 +46,7 @@ public class Entreprise{
      * @param e : L'employé à supprimer
      * @throws IllegalArgumentException si le paramètre en entrée e est null
      */
-    public void supprimerEmployer(Employe e)throws IllegalArgumentException{
+    public void supprimerEmploye(Employe e)throws IllegalArgumentException{
         if (e == null)
             throw new IllegalArgumentException("La valeur de l'employé à supprimer est null");
         Employe.mapEmployes.remove(e.getIdentifiant());

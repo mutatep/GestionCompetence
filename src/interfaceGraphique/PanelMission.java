@@ -23,15 +23,15 @@ public class PanelMission extends javax.swing.JPanel {
      */
     public PanelMission() {
         initComponents();
-        this.initialiserTableMission(Mission.mapMissions);
+        this.initialiserTableMission(Mission.getMapMission());
         
     }
-    private void initialiserTableMission(Map<String, Mission> map){
+    private void initialiserTableMission(Map<Integer, Mission> map){
         DefaultTableModel model = (DefaultTableModel) TableMissions.getModel();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-        for(String s : map.keySet())
-            model.addRow(new Object[]{s, map.get(s).getIntitule(), dateFormat.format(map.get(s).getDateDeb()), dateFormat.format(map.get(s).getDateFin())," ???"});
+        for(int s : map.keySet())
+            model.addRow(new Object[]{s, map.get(s).getIntitule(), dateFormat.format(map.get(s).getDateDeb()), dateFormat.format(map.get(s).getDateFin())," ???",false});
         
     }
 
@@ -71,10 +71,25 @@ public class PanelMission extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Identifiant", "Nom", "Date de debut", "Date de fin", "Phase"
+                "Identifiant", "Nom", "Date de debut", "Date de fin", "Phase", " "
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         TableMissions.getTableHeader().setReorderingAllowed(false);
+        TableMissions.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                TableMissionsInputMethodTextChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(TableMissions);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -116,8 +131,21 @@ public class PanelMission extends javax.swing.JPanel {
     }//GEN-LAST:event_addMissionButtonMouseClicked
 
     private void removeMissionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMissionMouseClicked
-        ((DefaultTableModel)this.TableMissions.getModel()).removeRow(0);
+        boolean b;
+        System.out.println(this.TableMissions.getColumnCount() - 1);
+        for(int i =0; i < this.TableMissions.getRowCount(); i++){
+            b = (boolean) this.TableMissions.getValueAt(i,this.TableMissions.getColumnCount() - 1);
+            System.out.println(b);
+            if(b){
+                ((DefaultTableModel)this.TableMissions.getModel()).removeRow(i);
+            }
+        }
+        
     }//GEN-LAST:event_removeMissionMouseClicked
+
+    private void TableMissionsInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_TableMissionsInputMethodTextChanged
+        System.out.println("coucou");
+    }//GEN-LAST:event_TableMissionsInputMethodTextChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

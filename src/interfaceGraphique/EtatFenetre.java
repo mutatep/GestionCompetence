@@ -13,5 +13,6 @@ public enum EtatFenetre {
     MISSIONS,
     EMPLOYES,
     HOME,
-    AJOUTMISSION
+    AJOUTMISSION,
+    FICHEEMPLOYE
 }
