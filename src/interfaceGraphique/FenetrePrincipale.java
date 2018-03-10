@@ -20,8 +20,10 @@ import interfaceGraphique.PanelMission;
  * @author fatima attmane
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
+
     private EtatFenetre etat;
     private static Entreprise e;
+
     /**
      * Creates new form FenetrePrincipale
      */
@@ -35,9 +37,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         this.e.recupererDonnees();
         this.etat = EtatFenetre.HOME;
     }
-    public void allerA(String newEtat){
+
+    public void allerA(String newEtat) {
         this.corps.removeAll();
-        switch(newEtat){
+        switch (newEtat) {
             case "home":
                 Main m = new Main();
                 this.corps.add(m);
@@ -58,16 +61,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 this.corps.add(pam);
                 this.etat = EtatFenetre.AJOUTMISSION;
                 break;
-            
+
         }
         this.corps.revalidate();
         this.corps.repaint();
 
     }
-    public void ficheEmp(Employe e){
-                FicheEmploye fe = new FicheEmploye(e);
-                this.corps.add(fe);
-                this.etat = EtatFenetre.FICHEEMPLOYE;
+
+    public void ficheEmp(Employe e) {
+        FicheEmploye fe = new FicheEmploye(e);
+        this.corps.add(fe);
+        this.etat = EtatFenetre.FICHEEMPLOYE;
     }
 
     /**
@@ -169,7 +173,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeButtonEmployesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeButtonEmployesMouseClicked
-       this.allerA("home");
+        this.allerA("home");
     }//GEN-LAST:event_homeButtonEmployesMouseClicked
 
     private void menuButtonEmployesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuButtonEmployesMouseClicked

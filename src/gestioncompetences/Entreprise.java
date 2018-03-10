@@ -16,9 +16,9 @@ import java.util.Set;
 public class Entreprise{
     
     private String libelle;
-    private Map<String, Employe> mapEmployes;
-    private Map<Integer, Mission> mapMissions;
-    private Map<Mission, Set<Employe>> mapMissionEmployes;
+    private static Map<Integer, Employe> mapEmployes;
+    private static Map<Integer, Mission> mapMissions;
+    private static Map<Mission, Set<Employe>> mapMissionEmployes;
     
     /**
      * Constructeur de la classe Entreprise
@@ -26,7 +26,7 @@ public class Entreprise{
      */
     public Entreprise(String libelle){
         this.libelle = libelle;
-        this.mapEmployes = Employe.mapEmployes;
+        this.mapEmployes = new HashMap<Integer, Employe>();
         this.mapMissions = Mission.getMapMissions();
         this.mapMissionEmployes = new HashMap<>();
     }
@@ -49,7 +49,7 @@ public class Entreprise{
     public void supprimerEmploye(Employe e)throws IllegalArgumentException{
         if (e == null)
             throw new IllegalArgumentException("La valeur de l'employé à supprimer est null");
-        Employe.mapEmployes.remove(e.getIdentifiant());
+        Entreprise.mapEmployes.remove(e.getIdentifiant());
     }
     
     /**
@@ -63,21 +63,17 @@ public class Entreprise{
         Mission.setMapMissions(m.getIdentifiant());
     }
     
-    /**
-     * Affiahce de tous les employés avec leurs compétences
-     */
-    public void afficherEmployeCompetences(){
-        for(String s : Employe.mapEmployes.keySet()){
-            System.out.println(s + " : " );
-            for(Competence c : Employe.mapEmployes.get(s).getCompetences())
-                    System.out.println(c.getIdentifiant() + " : " + c.getLibelleFr());
-            System.out.println ("---------------------------------------------------------");
-        }
-               
+    
+    public static Map<Integer, Employe> getMapEmployes(){
+        return Entreprise.mapEmployes;
     }
     
-    public Map<String, Employe> getMapEmploye(){
-        return this.mapEmployes;
+    public static void setMapEmployes(int identifiant, Employe e) throws IllegalArgumentException{
+        if(identifiant==0)
+            throw new IllegalArgumentException("L'idenfiant est égal à 0");
+        if (e == null)
+            throw new IllegalArgumentException("La valeur de l'employé à insérer est null");
+        Entreprise.mapEmployes.put(identifiant, e);
     }
     
 }

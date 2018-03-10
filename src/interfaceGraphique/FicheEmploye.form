@@ -18,7 +18,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <EmptySpace min="0" pref="606" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="jPanelInfosEmp" alignment="0" pref="606" max="32767" attributes="0"/>
+              <Component id="jPanelInfosEmp" alignment="0" pref="632" max="32767" attributes="0"/>
               <Component id="jPanelInfosCompetencesDEmp" alignment="1" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -83,7 +83,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="72" max="32767" attributes="0"/>
+                  <EmptySpace pref="63" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="idEmp" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="idLib" alignment="3" min="-2" max="-2" attributes="0"/>

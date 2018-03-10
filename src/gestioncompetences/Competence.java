@@ -1,18 +1,15 @@
 package gestioncompetences;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author fatimaAttmane
  */
-public class Competence {
+public class Competence implements Comparable{
 
     /**
      * L'identifiant de la compétence
@@ -32,7 +29,7 @@ public class Competence {
     /**
      * Une map qui stock toutes les compétences 
      */
-    protected static Map<String, Competence> mapCompetences = new HashMap<String, Competence>();
+    private static Map<String, Competence> mapCompetences = new HashMap<String, Competence>();
     
      /**
      * Constructeur avec paramétres de Compétence
@@ -61,5 +58,31 @@ public class Competence {
      */
     public String getLibelleFr() {
         return this.libelleFr;
+    }
+    
+    public static ArrayList<Competence> getCompetenceList(){
+       
+        ArrayList<Competence> l = (ArrayList<Competence>) Competence.mapCompetences.values();
+        /*for(String s : Competence.mapCompetences.keySet()){
+            l.add(Competence.mapCompetences.get(s));
+        }*/
+        Collections.sort(l);
+        return l;
+    }
+    
+    @Override
+    public int compareTo(Object t) {
+        Competence c = (Competence) t;
+        int result = 0;
+            if(this.libelleFr.compareToIgnoreCase(c.libelleFr)!=0){
+               result = this.libelleFr.compareToIgnoreCase(c.libelleFr);
+            }else if(this.libelleEn.compareToIgnoreCase(c.libelleEn)!=0){
+                result = this.libelleEn.compareToIgnoreCase(c.libelleEn);
+            }
+        return result;
+    }
+    
+    public static Map<String, Competence> getMapCompetences(){
+        return Competence.mapCompetences;
     }
 }

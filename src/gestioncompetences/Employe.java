@@ -17,17 +17,12 @@ import java.util.Set;
  */
 public class Employe {
     
-    private String identifiant;
+    private int identifiant;
     private String prenom;
     private String nom;
     private Date dateEntree;
     private Set<Competence> setCompetences;
 
-    /**
-     *
-     */
-    public static Map<String, Employe> mapEmployes = new HashMap<String, Employe>();
-    
     /**
      * Constructeur de la classe Employe
      * @param id : Identifiant de l'employé
@@ -35,14 +30,14 @@ public class Employe {
      * @param nom : Nom d'un employé
      * @param dateE : Date d'entrée d'un employé
      */
-    public Employe(String id, String prenom, String nom, Date dateE){
+    public Employe(int id, String prenom, String nom, Date dateE){
         this.identifiant = id;
         this.prenom = prenom;
         this.nom = nom;
         this.dateEntree = dateE;
         this.setCompetences = new HashSet<>();
         
-        Employe.mapEmployes.put(this.identifiant, this);
+        Entreprise.setMapEmployes(this.identifiant, this);
     }
 
     /**
@@ -71,7 +66,7 @@ public class Employe {
      * Permet d'obtenir l'identifiant de l'employé
      * @return l'identifiant d'un employé
      */
-    public String getIdentifiant(){
+    public int getIdentifiant(){
         return this.identifiant;
     }
     
@@ -96,18 +91,8 @@ public class Employe {
         return this.setCompetences;
     }
     
-    /**
-     *Affiche la map constituée de tous les employés
-     */
-    public static void afficherMapemployes(){
-        for(String s : Employe.mapEmployes.keySet()){
-            System.out.print (s +  " : ");
-            System.out.println(Employe.mapEmployes.get(s).identifiant + " -- " 
-                    + Employe.mapEmployes.get(s).nom + " -- " 
-                    +Employe.mapEmployes.get(s).prenom + " -- "
-                    +Employe.mapEmployes.get(s).dateEntree);
-             
-        }
+    public String toString(){
+        return this.getIdentifiant() + " : " + this.getNom() + this.getPrenom();
     }
     
 }

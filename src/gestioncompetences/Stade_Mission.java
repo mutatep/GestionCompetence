@@ -9,15 +9,6 @@ package gestioncompetences;
  *
  * @author mutatep
  */
-public class GestionCompetences {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-        FichierCsv fichier = new FichierCsv();
-
-    }
-    
+public enum Stade_Mission {
+    MISSION_EN_PREPARATION, MISSION_PLANNFIEE, MISSION_EN_COURS, MISSION_TERMINEE
 }

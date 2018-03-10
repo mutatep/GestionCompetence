@@ -6,12 +6,8 @@
 package interfaceGraphique;
 
 import gestioncompetences.Competence;
-import gestioncompetences.Competence;
-import gestioncompetences.Competence;
 import gestioncompetences.Employe;
-import gestioncompetences.Employe;
-import gestioncompetences.Employe;
-import static interfaceGraphique.FicheEmployeFen.comboBoxIdToCompetence;
+import gestioncompetences.Entreprise;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -23,25 +19,28 @@ import javax.swing.DefaultListModel;
  * @author attma
  */
 public class FicheEmploye extends javax.swing.JPanel {
-    public static HashMap<Integer,Competence> comboBoxIdToCompetence= new HashMap<Integer,Competence>(); // pas top mais j ai pas trouvé mieux
-    private String currentIdEmp;
+
+    public static HashMap<Integer, Competence> comboBoxIdToCompetence = new HashMap<Integer, Competence>(); // pas top mais j ai pas trouvé mieux
+    private int currentIdEmp;
+
     /**
      * Creates new form FicheEmploye
      */
     public FicheEmploye(Employe e) {
         initComponents();
         this.currentIdEmp = e.getIdentifiant();
-        this.idEmp.setText(e.getIdentifiant());
+        this.idEmp.setText(String.valueOf(e.getIdentifiant()));
         this.dateEmp.setText(e.getDate().toString());
         this.prenomEmp.setText(e.getPrenom());
         this.nomEmp.setText(e.getNom());
         initialiserListe(e);
-        
+
         initialiserComboBox();
     }
-private void initialiserListe(Employe e) {
+
+    private void initialiserListe(Employe e) {
         Set<Competence> s = e.getCompetences();
-       DefaultListModel modele = new DefaultListModel();
+        DefaultListModel modele = new DefaultListModel();
         for (Competence c : s) {
             modele.addElement(c.toString());
             System.out.println(c.toString());
@@ -49,16 +48,18 @@ private void initialiserListe(Employe e) {
         this.listCompetences.setModel(modele);
     }
 
-    private void initialiserComboBox(){
-        DefaultComboBoxModel modele2 = new DefaultComboBoxModel() {};
-        ArrayList<Competence> a= Competence.getCompetenceList();
+    private void initialiserComboBox() {
+        DefaultComboBoxModel modele2 = new DefaultComboBoxModel() {
+        };
+        ArrayList<Competence> a = Competence.getCompetenceList();
         for (Competence c : a) {
             modele2.addElement(c.getLibelleFr());
-            comboBoxIdToCompetence.put(modele2.getIndexOf(c.getLibelleFr()),c);
+            comboBoxIdToCompetence.put(modele2.getIndexOf(c.getLibelleFr()), c);
             System.out.println(c.getLibelleFr());
         }
         this.addCompetenceComboBox.setModel(modele2);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -251,15 +252,15 @@ private void initialiserListe(Employe e) {
 
     private void addCompToEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCompToEmpMouseClicked
         // On recup la competence
-        Competence compAAdd= FicheEmployeFen.comboBoxIdToCompetence.get(addCompetenceComboBox.getSelectedIndex());
-        if(Employe.mapEmployes.get(this.currentIdEmp).getCompetences().contains(compAAdd)){
+        Competence compAAdd = FicheEmployeFen.comboBoxIdToCompetence.get(addCompetenceComboBox.getSelectedIndex());
+        if (Entreprise.getMapEmployes().get(this.currentIdEmp).getCompetences().contains(compAAdd)) {
             this.errorAddComp.setText("L'employé possède déjà cette compétence");
-        }else{
+        } else {
             this.errorAddComp.setText(" ");
             // On l'ajoute à l'employé
-            Employe.mapEmployes.get(this.currentIdEmp).ajouterCompetence(compAAdd);
+            Entreprise.getMapEmployes().get(this.currentIdEmp).ajouterCompetence(compAAdd);
             // On refresh la liste
-            initialiserListe(Employe.mapEmployes.get(this.currentIdEmp));
+            initialiserListe(Entreprise.getMapEmployes().get(this.currentIdEmp));
         }
 
     }//GEN-LAST:event_addCompToEmpMouseClicked

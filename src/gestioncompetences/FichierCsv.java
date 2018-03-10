@@ -46,7 +46,7 @@ public class FichierCsv implements Fichier{
     
     private void chargerDonneesEmployes() throws ParseException{
         SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
-        Employe employe = new Employe(this.mots[3], this.mots[0], this.mots[1], date.parse(this.mots[2]));
+        Employe employe = new Employe(Integer.parseInt(this.mots[3]), this.mots[0], this.mots[1], date.parse(this.mots[2]));
     }
     
     private void chargerDonneesCompetences() throws ParseException{
@@ -54,10 +54,10 @@ public class FichierCsv implements Fichier{
     }
     
     private void chargerDonneesCompetencesPersonnel() throws ParseException{
-        for(String s : Employe.mapEmployes.keySet())
-            if(this.mots[0].equals(s))
+        for(Integer s : Entreprise.getMapEmployes().keySet())
+            if(Integer.parseInt(this.mots[0]) == s)
                 for(int i = 1; i<this.mots.length; i++)
-                    Employe.mapEmployes.get(s).ajouterCompetence(Competence.mapCompetences.get(this.mots[i]));
+                    Entreprise.getMapEmployes().get(s).ajouterCompetence(Competence.getMapCompetences().get(this.mots[i]));
     }
     
 }

@@ -11,6 +11,7 @@ import gestioncompetences.Competence;
 import gestioncompetences.Employe;
 import gestioncompetences.Employe;
 import gestioncompetences.Employe;
+import gestioncompetences.Entreprise;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,14 +28,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FicheEmployeFen extends javax.swing.JFrame {
     public static HashMap<Integer,Competence> comboBoxIdToCompetence= new HashMap<Integer,Competence>(); // pas top mais j ai pas trouvé mieux
-    private String currentIdEmp;
+    private int currentIdEmp;
     /**
      * Creates new form FicheEmployeFen
      */
     public FicheEmployeFen(Employe e) {
         initComponents();
         this.currentIdEmp = e.getIdentifiant();
-        this.idEmp.setText(e.getIdentifiant());
+        this.idEmp.setText(String.valueOf(e.getIdentifiant()));
         this.dateEmp.setText(e.getDate().toString());
         this.prenomEmp.setText(e.getPrenom());
         this.nomEmp.setText(e.getNom());
@@ -263,14 +264,14 @@ public class FicheEmployeFen extends javax.swing.JFrame {
     private void addCompToEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCompToEmpMouseClicked
         // On recup la competence
         Competence compAAdd= FicheEmployeFen.comboBoxIdToCompetence.get(addCompetenceComboBox.getSelectedIndex());
-        if(Employe.mapEmployes.get(this.currentIdEmp).getCompetences().contains(compAAdd)){
+        if(Entreprise.getMapEmployes().get(this.currentIdEmp).getCompetences().contains(compAAdd)){
             this.errorAddComp.setText("L'employé possède déjà cette compétence");
         }else{
             this.errorAddComp.setText(" ");
             // On l'ajoute à l'employé
-            Employe.mapEmployes.get(this.currentIdEmp).ajouterCompetence(compAAdd);
+            Entreprise.getMapEmployes().get(this.currentIdEmp).ajouterCompetence(compAAdd);
             // On refresh la liste
-            initialiserListe(Employe.mapEmployes.get(this.currentIdEmp));
+            initialiserListe(Entreprise.getMapEmployes().get(this.currentIdEmp));
         }
         
     }//GEN-LAST:event_addCompToEmpMouseClicked
